@@ -54,7 +54,7 @@ const adminNumber = JSON.parse(fs.readFileSync("./database/json/admin.json"));
 const anime = JSON.parse(fs.readFileSync("./database/json/anime.json"));
 const blocked = JSON.parse(fs.readFileSync("./database/json/blocked.json"));
 const antilink = JSON.parse(fs.readFileSync("./database/json/antilink.json"));
-let { instagram, yt, groupLink } = setting;
+let { instagram, groupLink } = setting;
 
 const { fetchJson } = require("./lib/fetcher");
 const { recognize } = require("./lib/ocr");
@@ -87,7 +87,7 @@ const vcard =
   "VERSION:3.0\n" +
   "FN:ANDRE BOT\n" +
   "ORG:Owner Gans;\n" +
-  "TEL;type=CELL;type=VOICE;waid=6282131882053:+62 821-3188-2053\n" +
+  "TEL;type=CELL;type=VOICE;waid=6283830248271:+62 838-3024-8271\n" +
   "END:VCARD";
 
 prefix = "!";
@@ -152,11 +152,11 @@ async function starts() {
           ppimg =
             "https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg";
         }
-        teks = `*[ SELAMAT DATANG DI GROUP ${
-          mdata.subject
-        } ]*\n*═══════════════════*\n@${
+        teks = `Halo ${
           num.split("@")[0]
-        } *INTRO DULU!!!*\n*═══════════════════*\n*Jika Anda Tidak Mau Intro Silahkan Keluar Ngab*\n*═══════════════════*\n*✤ nama :*\n*✤ umur :*\n*✤ gender :*\n*✤ asal kota :*\n*✤ nama IG :*\n*✤ Ada Doi? :*\n*✤ Nama Mantan? :*\n*═══════════════════*\n*NOTE : SAVE NOMER BOT & ADMIN*\n*SEMOGA BETAH*`;
+        }, Selamat datang di ${
+          mdata.subject
+        }, taati rules yang ada yaa dan jangan lupa save nomor admin`;
         let buff = await getBuffer(ppimg);
         dms.sendMessage(mdata.id, buff, MessageType.image, {
           caption: teks,
@@ -293,7 +293,7 @@ async function starts() {
       };
 
       const botNumber = dms.user.jid;
-      const ownerNumber = ["6282131882053@s.whatsapp.net"]; // owner number ubah aja
+      const ownerNumber = ["6283830248271@s.whatsapp.net"]; // owner number ubah aja
       const isGroup = from.endsWith("@g.us");
       const sender = isGroup ? mek.participant : mek.key.remoteJid;
       const groupMetadata = isGroup ? await dms.groupMetadata(from) : "";
@@ -467,7 +467,7 @@ async function starts() {
 
       if (!isGroup && !isOwner)
         return reply(
-          `Kalo ingin menggunakan bot silahkan langsung gabung di grup nya kak. ini link nya yaa https://chat.whatsapp.com/EXsyRf1BfIw7jEcLN6uQm8`
+          `Maaf ${pushname2}, bot tidak bisa di gunakan di luar grup, untuk menggunakan bot silahkan hubungi owner di wa.me/6283830248271`
         );
 
       switch (command) {
@@ -622,11 +622,8 @@ async function starts() {
             help(
               prefix,
               instagram,
-              yt,
               name,
               pushname2,
-              user,
-              limitt,
               uptime,
               jam,
               tanggal
