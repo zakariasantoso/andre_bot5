@@ -227,6 +227,8 @@ async function starts() {
       const date = new Date().toLocaleDateString();
       const time = moment.tz("Asia/Jakarta").format("HH:mm:ss");
       const jam = moment.tz("Asia/Jakarta").format("HH:mm");
+	var tas = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
+
 
       body =
         type === "conversation" && mek.message.conversation.startsWith(prefix)
@@ -284,7 +286,7 @@ async function starts() {
             "*𝗠𝗔𝗔𝗙 𝗔𝗡𝗗𝗔 𝗧𝗜𝗗𝗔𝗞 𝗚𝗔𝗡𝗦 𝗨𝗡𝗧𝗨𝗞 𝗠𝗘𝗡𝗚𝗚𝗨𝗡𝗔𝗞𝗔𝗡 𝗙𝗜𝗧𝗨𝗥 𝗜𝗡𝗜/𝗞𝗛𝗨𝗦𝗨𝗦 𝗢𝗪𝗡𝗘𝗥* ",
           premium:
             "*𝗙𝗜𝗧𝗨𝗥 𝗧𝗘𝗥𝗞𝗨𝗡𝗖𝗜!!! 𝗞𝗛𝗨𝗦𝗨𝗦 𝗣𝗥𝗘𝗠𝗜𝗨𝗠 𝗦𝗜𝗟𝗔𝗛𝗞𝗔𝗡 𝗖𝗛𝗔𝗧 𝗢𝗪𝗡𝗘𝗥 𝗚𝗥𝗔𝗧𝗜𝗦!!!*",
-          userB: `*Hallo Kak* ${pushname2} *Kayanya Kamu Blm Terdaftar Sebagai Teman Dark BOT*\n*Ketik ${prefix}daftar nama|umur*\n*Contoh ${prefix}daftar andre|17*`,
+          userB: `*Hallo Kak* ${pushname2} *Kayanya Kamu Blm Terdaftar Sebagai Teman Andre BOT*\n*Ketik ${prefix}daftar nama|umur*\n*Contoh ${prefix}daftar andre|17*`,
           admin: "*𝗠𝗮𝗮𝗳 𝗖𝗼𝗺𝗺𝗮𝗻𝗱 𝗜𝗻𝗶 𝗞𝗵𝘂𝘀𝘂𝘀 𝗔𝗱𝗺𝗶𝗻 𝗚𝗿𝗼𝘂𝗽!*",
           Badmin:
             "*𝗠𝗮𝗮𝗳 𝗦𝗮𝘆𝗮 𝗕𝗹𝗺 𝗝𝗮𝗱𝗶 𝗔𝗱𝗺𝗶𝗻 𝗦𝗶𝗹𝗮𝗵𝗸𝗮𝗻 𝗝𝗮𝗱𝗶𝗸𝗮𝗻 𝗦𝗮𝘆𝗮 𝗔𝗱𝗺𝗶𝗻 𝗧𝗲𝗿𝗹𝗲𝗯𝗶𝗵 𝗗𝗮𝗵𝘂𝗹𝘂:𝘃*",
@@ -417,7 +419,7 @@ async function starts() {
           );
         }
       };
-      if (messagesLink.includes("://chat.whatsapp.com/")) {
+      if (tas.match(/(https?:\/\/chat.whatsapp.com)/gi)) {
         if (!isGroup) return;
         if (!isAntiLink) return;
         if (isGroupAdmins)
